@@ -16,26 +16,31 @@
         <textarea name="text" id="text"></textarea>
         <input type='button' id='send' value='Send'>
     </form>
-    <div id="textres">
+    <form id='form-get' action="" , method="GET">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <input type='button' id='send2' value='Send'>
+    </form>
+    <article id="textres">
 
-    </div>
+    </article>
 
 
     <script>
         /*document.querySelector('#send').addEventListener('click', function(e) {
-                                                                                                                                                                                                                                                                                                                                    e.preventDefault();
-                                                                                                                                                                                                                                                                                                                                    fetch('new-article.php', {
-                                                                                                                                                                                                                                                                                                                                        method: 'POST',
-                                                                                                                                                                                                                                                                                                                                        body: new FormData(document.getElementById('#form-article')),
-                                                                                                                                                                                                                                                                                                                                        headers: new Headers({
-                                                                                                                                                                                                                                                                                                                                            'Content-Type': 'x-www-form-urlencoded'
-                                                                                                                                                                                                                                                                                                                                        })
-                                                                                                                                                                                                                                                                                                                                    }).then(function(responseObj) {
-                                                                                                                                                                                                                                                                                                                                        console.log('status: ', responseObj.status);
-                                                                                                                                                                                                                                                                                                                                    }).catch(function(error) {
-                                                                                                                                                                                                                                                                                                                                        console.error(error.message);
-                                                                                                                                                                                                                                                                                                                                    })
-                                                                                                                                                                                                                                                                                                                                })*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    e.preventDefault();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    fetch('new-article.php', {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        method: 'POST',
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        body: new FormData(document.getElementById('#form-article')),
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        headers: new Headers({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            'Content-Type': 'x-www-form-urlencoded'
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        })
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }).then(function(responseObj) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        console.log('status: ', responseObj.status);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    }).catch(function(error) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        console.error(error.message);
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    })
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                })*/
 
         //Correction
         /*
@@ -61,7 +66,7 @@
         let submit = document.querySelector('#send');
         submit.addEventListener('click', function(e) {
             e.preventDefault();
-            fetch("http://192.168.1.152:8080/article/?id=cyrille", {
+            fetch("http://192.168.1.152:8080/article/cyrille/", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -71,10 +76,11 @@
                     "content": document.getElementById('text').value
                 })
             }).then(function(response) {
-                console.log(response.status);
+                //console.log(response.status);
                 return response.text();
             }).then(function(text) {
-                console.log(text);
+                //console.log(text);
+                display();
             }).catch(function(error) {
                 console.error(error.mesage);
             })
@@ -112,6 +118,141 @@
                 });
 
                 */
+        /*  function display() {
+              let div = document.querySelector('#textres');
+              div.innerHTML = "";
+              //let id = document.querySelector('#name');
+              //let submit2 = document.querySelector('#send2');
+              //submit2.addEventListener('click', function(e) {
+              fetch("http://192.168.1.152:8080/articles/cyrille/desc" //, {
+                  //method: "GET",
+                  //headers: {
+                  //    'Content-Type': 'application/json'
+                  //}
+                  //body: JSON.stringify({
+                  //  "title": document.getElementById('title').value,
+                  // "content": document.getElementById('text').value
+                  //})
+              ).then(function(response) {
+                  //console.log(response);
+                  //console.log(response.status);
+                  return response.json();
+              }).then(function(json) {
+
+                  for (let m of json) {
+                      let p = document.createElement('p');
+                      let tit = document.createElement('h1');
+                      tit.textContent = m.timestamp + ' : ' + m.title;
+                      p.textContent = m.content;
+                      let input = document.createElement('input');
+                      input.type = "button";
+                      input.value = "Delete";
+                      input.id = "delete";
+                      div.appendChild(tit);
+                      div.appendChild(p);
+                      div.appendChild(input);
+
+                      let delet = document.querySelector("#delete");
+                      delet.addEventListener('click', function(e) {
+                          e.preventDefault();
+                          deleteObj(m.title);
+                      });
+                  }
+              }).catch(function(error) {
+                  console.error(error.mesage);
+              })
+          };
+
+          function deleteObj(tit) {
+              fetch("http://192.168.1.152:8080/articles/cyrille/" + tit, {
+                  method: "DELETE",
+                  headers: {
+                      'Access-Control-Allow-Headers': 'X-Requested-With',
+                      'Content-Type': 'application/json'
+                  }
+              }).then(function(response) {
+                  console.log(response);
+              }).catch(function(error) {
+                  console.error(error.mesage);
+              })
+
+          }
+          let delet = document.querySelector("#delete");
+          delet.addEventListener('click', function(e) {
+              e.preventDefault();
+              deleteObj();
+          });
+          //   });
+
+          */
+
+
+
+        /* function display() {
+             let div = document.querySelector('#textres');
+             div.innerHTML = "";
+             for (let m of JSON.parse(json)) {
+                 let p = document.createElement('p');
+                 let tit = document.createElement('h1');
+                 tit.textContent = m.title;
+                 p.textContent = m.content;
+                 tit.appendChild(p);
+                 div.appendChild(tit);
+             }
+         }*/
+
+        //Correction delete
+        function display() {
+            let div = document.querySelector('#textres');
+            div.innerHTML = "";
+            //let id = document.querySelector('#name');
+            //let submit2 = document.querySelector('#send2');
+            //submit2.addEventListener('click', function(e) {
+            fetch("http://192.168.1.152:8080/articles/cyrille/desc" //, {
+                //method: "GET",
+                //headers: {
+                //    'Content-Type': 'application/json'
+                //}
+                //body: JSON.stringify({
+                //  "title": document.getElementById('title').value,
+                // "content": document.getElementById('text').value
+                //})
+            ).then(function(response) {
+                //console.log(response);
+                //console.log(response.status);
+                return response.json();
+            }).then(function(json) {
+
+                for (let m of json) {
+                    let p = document.createElement('p');
+                    let tit = document.createElement('h1');
+                    tit.textContent = m.timestamp + ' : ' + m.title;
+                    p.textContent = m.content;
+                    let button = document.createElement('button');
+                    button.textContent = "Delete";
+                    button.dataset.title = m.title;
+                    div.appendChild(tit);
+                    div.appendChild(p);
+                    div.appendChild(button);
+                    button.addEventListener('click', deleteArticleListener);
+
+                }
+            }).catch(function(error) {
+                console.error(error.mesage);
+            })
+        };
+
+        function deleteArticleListener(e) {
+            let button = e.currentTarget;
+            // console.log(button);
+            let url = "http://192.168.1.152:8080/article/cyrille/" + button.dataset.title + "/";
+            fetch(url, {
+                method: "DELETE"
+            }).then(function(response) {
+                console.log(response.status);
+                display();
+            })
+        };
     </script>
 </body>
 
